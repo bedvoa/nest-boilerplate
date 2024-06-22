@@ -17,7 +17,6 @@ import { AuthService } from 'src/modules/auth/service/auth.service';
 import { IAuthResponseDto } from 'src/modules/auth/dto/response.dto';
 import { JwtAuthGuard } from 'src/modules/auth/guard/jwt-auth.guard';
 import { UuidMatchUser } from 'src/modules/auth/guard/uuid.guard';
-import { RequestWithUser } from 'src/common/interfaces/user.interface';
 import { UserPatchDto } from '../dto/user-patch.dto';
 
 @Controller('user')
