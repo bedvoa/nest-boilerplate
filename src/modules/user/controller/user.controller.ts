@@ -11,12 +11,12 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { UserSignUpDto } from '../dto/user-signup.dto';
-import { UserService } from '../service/user.service';
 import { IUserResponse } from '../dto/user-response.dto';
 import { AuthService } from 'src/modules/auth/service/auth.service';
 import { IAuthResponseDto } from 'src/modules/auth/dto/response.dto';
 import { JwtAuthGuard } from 'src/modules/auth/guard/jwt-auth.guard';
 import { UuidMatchUser } from 'src/modules/auth/guard/uuid.guard';
+import { UserService } from '../service/user.service';
 import { UserPatchDto } from '../dto/user-patch.dto';
 
 @Controller('user')
@@ -52,8 +52,10 @@ export class UserController {
   @Get('/:uuid')
   @UuidMatchUser()
   @UseGuards(JwtAuthGuard)
-  async getMyInfo(@Request() req: any) {
-    return await req.user;
+  async getMyInfo(
+    @Request() req: { user: { uuid: string; refreshToken: boolean } },
+  ) {
+    return await this.userService.getUserByUuid(req.user.uuid);
   }
 
   @Patch('/:uuid')

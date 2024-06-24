@@ -1,4 +1,4 @@
-import * as expressBasicAuth from 'express-basic-auth';
+// import * as expressBasicAuth from 'express-basic-auth';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { CustomValidationPipe } from './common/pipes/validation.pipe';
@@ -10,15 +10,15 @@ async function bootstrap() {
   const logger = new Logger('MAIN');
 
   app.useGlobalPipes(new CustomValidationPipe());
-  app.use(
-    '/api-docs',
-    expressBasicAuth({
-      users: {
-        [process.env.AUTH_USERNAME]: process.env.AUTH_PASSWORD,
-      },
-      challenge: true,
-    }),
-  );
+  // app.use(
+  //   '/api-docs',
+  //   expressBasicAuth({
+  //     users: {
+  //       [process.env.AUTH_USERNAME]: process.env.AUTH_PASSWORD,
+  //     },
+  //     challenge: true,
+  //   }),
+  // );
 
   const config = new DocumentBuilder()
     .setTitle('Blog')

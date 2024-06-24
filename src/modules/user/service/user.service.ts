@@ -5,7 +5,6 @@ import { UserSignUpDto } from '../dto/user-signup.dto';
 import { InsertResult } from 'typeorm';
 import { IUserResponse } from '../dto/user-response.dto';
 import { BadRequestConstant } from 'src/constant/response.constant';
-import { RequestWithUser } from 'src/common/interfaces/user.interface';
 import { UserPatchDto } from '../dto/user-patch.dto';
 
 @Injectable()
@@ -114,6 +113,23 @@ export class UserService {
       };
     } catch (error) {
       this.handleError(`updateUser Error`, error);
+    }
+  }
+
+  async getUserByUuid(uuid: string) {
+    try {
+      const user = await this.userDao.getUserInfoByUuid({ uuid });
+      return {
+        status: true,
+        code: 200,
+        uuid: user.uuid,
+        name: user.name,
+        nickname: user.nickname,
+        userId: user.userId,
+        email: user.email,
+      };
+    } catch (error) {
+      this.handleError(`getUser Error`, error);
     }
   }
 
