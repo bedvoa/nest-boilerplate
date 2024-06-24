@@ -1,4 +1,4 @@
-import UserSignInDto from '../dto/user-signin.dto';
+import { UserSignInDto } from '../dto/user-signin.dto';
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { IUserResponse } from '../dto/user-response.dto';

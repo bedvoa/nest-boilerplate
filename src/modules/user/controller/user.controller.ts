@@ -1,4 +1,4 @@
-import UserSignInDto from '../dto/user-signin.dto';
+import { UserSignInDto } from '../dto/user-signin.dto';
 import {
   Body,
   Controller,
